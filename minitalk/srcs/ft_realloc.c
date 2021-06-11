@@ -1,26 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/11 12:32:57 by ametta            #+#    #+#             */
-/*   Updated: 2021/06/11 12:32:57 by ametta           ###   ########.fr       */
+/*   Created: 2021/06/11 12:48:46 by ametta            #+#    #+#             */
+/*   Updated: 2021/06/11 13:02:08 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "../minitalk.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-
-void	ft_putstr(char *s);
-void	ft_putnbr(int n);
-void	ft_putchar(char c);
-int		ft_atoi(const char *str);
-int		ft_isspace(const char c);
-int		ft_isdigit(int c);
-
-#endif
+unsigned char *ft_realloc(unsigned char *str, int to_add)
+{
+	unsigned char	*new;
+	int				len;
+	
+	len = 0;
+	if (str)
+		while (str[len])
+			len++;
+	new = (unsigned char *)malloc(sizeof(unsigned char) * (len + to_add));
+	if (new)
+	{
+		len = 0;
+		if (str)
+			while (str[len])
+			{
+				new[len] = str[len];
+				len++;
+			}
+		while (len < to_add)
+			new[len] = '\0';
+	}
+	return (new);
+}

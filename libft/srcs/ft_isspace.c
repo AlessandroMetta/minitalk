@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/11 12:32:57 by ametta            #+#    #+#             */
-/*   Updated: 2021/06/11 12:32:57 by ametta           ###   ########.fr       */
+/*   Created: 2021/06/11 10:16:43 by ametta            #+#    #+#             */
+/*   Updated: 2021/06/11 10:17:15 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "../libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-
-void	ft_putstr(char *s);
-void	ft_putnbr(int n);
-void	ft_putchar(char c);
-int		ft_atoi(const char *str);
-int		ft_isspace(const char c);
-int		ft_isdigit(int c);
-
-#endif
+int	ft_isspace(const char c)
+{
+	if (c == ' ' || c == '\t' || c == '\v' || c == '\r' || c == '\n'
+		|| c == '\f')
+		return (1);
+	return (0);
+}

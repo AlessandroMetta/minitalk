@@ -1,37 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/10 18:37:08 by ametta            #+#    #+#             */
-/*   Updated: 2021/06/11 10:25:57 by ametta           ###   ########.fr       */
+/*   Created: 2021/06/11 10:11:12 by ametta            #+#    #+#             */
+/*   Updated: 2021/06/11 10:17:11 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-void	ft_putnbr(int n)
+int	ft_atoi(const char *str)
 {
-	if (n == -2147483648)
+	size_t	i;
+	int		sign;
+	size_t	num;
+
+	num = 0;
+	i = 0;
+	sign = 1;
+	while (ft_isspace(str[i]))
+		i++;
+	if (str[i] == '-')
+		sign *= -1;
+	if (str[i] == '+' || str[i] == '-')
+		i++;
+	while (ft_isdigit(str[i]))
 	{
-		ft_putchar('-');
-		ft_putchar('2');
-		ft_putnbr(147483648);
+		num = (num * 10) + (str[i] - '0');
+		i++;
 	}
-	else if (n < 0)
+	if ((num > 2147483648 && sign == -1) || (num > 2147483647 && sign == 1))
 	{
-		ft_putchar('-');
-		ft_putnbr((n) * (-1));
+		ft_putstr("ERROR: OVER INTEGER RANGE\n");
+		exit(1);
 	}
-	else if (n < 10)
-	{
-		ft_putchar(n + 48);
-	}
-	else
-	{
-		ft_putnbr(n / 10);
-		ft_putchar(((n % 10) + 48));
-	}
+	return (num * sign);
 }

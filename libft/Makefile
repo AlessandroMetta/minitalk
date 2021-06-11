@@ -7,7 +7,9 @@ NAME = libft.a
 SRCS =	srcs/ft_putchar.c \
 		srcs/ft_putstr.c \
 		srcs/ft_putnbr.c \
-
+		srcs/ft_atoi.c \
+		srcs/ft_isspace.c \
+		srcs/ft_isdigit.c \
 
 OBJS = $(SRCS:.c=.o)
 

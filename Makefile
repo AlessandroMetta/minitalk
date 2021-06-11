@@ -6,9 +6,10 @@ NAME_SERVER = server
 
 NAME_CLIENT = client
 
-SRCS_SERVER = server.c
+SRCS_SERVER =	minitalk/srcs/server.c \
+				minitalk/srcs/ft_realloc.c \
 
-SRCS_CLIENT = client.c
+SRCS_CLIENT = minitalk/srcs/client.c
 
 OBJS_SERVER = $(SRCS_SERVER:.c=.o)
 
@@ -16,7 +17,7 @@ OBJS_CLIENT = $(SRCS_CLIENT:.c=.o)
 
 LIBFT =	libft/libft.a
 
-all: $(NAME_SERVER)
+all: $(NAME_SERVER) $(NAME_CLIENT)
 
 $(NAME_SERVER): $(OBJS_SERVER)
 				@make -C libft
