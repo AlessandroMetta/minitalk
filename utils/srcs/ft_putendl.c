@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_putendl.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/10 18:45:10 by ametta            #+#    #+#             */
-/*   Updated: 2021/06/11 10:17:17 by ametta           ###   ########.fr       */
+/*   Created: 2021/06/11 15:22:40 by ametta            #+#    #+#             */
+/*   Updated: 2021/06/11 15:36:08 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../utils.h"
 
-void	ft_putchar(char c)
+void	ft_putendl(const char *s)
 {
-	write(1, &c, 1);
+	if (s)
+	{
+		ft_putstr(s);
+		ft_putchar('\n');
+	}
 }

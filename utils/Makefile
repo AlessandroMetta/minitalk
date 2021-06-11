@@ -2,7 +2,7 @@ CC = gcc -Wall -Wextra -Werror
 
 CFLAGS =	-Wall -Wextra -Werror
 
-NAME = libft.a
+NAME = utils.a
 
 SRCS =	srcs/ft_putchar.c \
 		srcs/ft_putstr.c \
@@ -10,6 +10,8 @@ SRCS =	srcs/ft_putchar.c \
 		srcs/ft_atoi.c \
 		srcs/ft_isspace.c \
 		srcs/ft_isdigit.c \
+		srcs/ft_putendl.c \
+		srcs/ft_realloc.c \
 
 OBJS = $(SRCS:.c=.o)
 

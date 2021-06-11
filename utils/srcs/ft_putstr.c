@@ -1,37 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/10 18:37:08 by ametta            #+#    #+#             */
-/*   Updated: 2021/06/11 10:25:57 by ametta           ###   ########.fr       */
+/*   Created: 2021/06/10 18:30:59 by ametta            #+#    #+#             */
+/*   Updated: 2021/06/11 15:36:11 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../utils.h"
 
-void	ft_putnbr(int n)
+void	ft_putstr(const char *s)
 {
-	if (n == -2147483648)
-	{
-		ft_putchar('-');
-		ft_putchar('2');
-		ft_putnbr(147483648);
-	}
-	else if (n < 0)
-	{
-		ft_putchar('-');
-		ft_putnbr((n) * (-1));
-	}
-	else if (n < 10)
-	{
-		ft_putchar(n + 48);
-	}
-	else
-	{
-		ft_putnbr(n / 10);
-		ft_putchar(((n % 10) + 48));
-	}
+	int	i;
+
+	i = 0;
+	while (s[i] != 0)
+		ft_putchar(s[i++]);
 }

@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 09:37:08 by ametta            #+#    #+#             */
-/*   Updated: 2021/06/11 14:30:01 by ametta           ###   ########.fr       */
+/*   Updated: 2021/06/11 15:18:50 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	main(int argc, char **argv)
 		server_pid = ft_atoi(argv[1]);
 		if (!server_pid)
 		{
-			ft_putstr("INVALID PID");
+			ft_putstr("INVALID PID\n");
 			return (1);
 		}
 		while (argv[2][++i])

@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 18:28:06 by ametta            #+#    #+#             */
-/*   Updated: 2021/06/11 14:44:35 by ametta           ###   ########.fr       */
+/*   Updated: 2021/06/11 15:24:18 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,12 @@ static void	decode(int sig)
 		str[j++] = convert_bin_to_dec(bin);
 		if (str[j - 1] == 0)
 		{
-			ft_putstr((char *)str);
-			ft_putchar('\n');
+			ft_putendl((char *)str);
 			free(str);
 			str = NULL;
 			j = 0;
 		}
-		i = 0;		
+		i = 0;
 	}
 }
 

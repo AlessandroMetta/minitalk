@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isspace.c                                       :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/11 10:16:43 by ametta            #+#    #+#             */
-/*   Updated: 2021/06/11 10:17:15 by ametta           ###   ########.fr       */
+/*   Created: 2021/06/11 10:59:50 by ametta            #+#    #+#             */
+/*   Updated: 2021/06/11 15:36:02 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../utils.h"
 
-int	ft_isspace(const char c)
+int	ft_isdigit(const int c)
 {
-	if (c == ' ' || c == '\t' || c == '\v' || c == '\r' || c == '\n'
-		|| c == '\f')
+	if (c >= '0' && c <= '9')
 		return (1);
-	return (0);
+	else
+		return (0);
 }

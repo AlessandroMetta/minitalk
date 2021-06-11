@@ -6,11 +6,11 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 10:11:12 by ametta            #+#    #+#             */
-/*   Updated: 2021/06/11 10:17:11 by ametta           ###   ########.fr       */
+/*   Updated: 2021/06/11 15:36:01 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../utils.h"
 
 int	ft_atoi(const char *str)
 {

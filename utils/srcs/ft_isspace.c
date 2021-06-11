@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/11 12:32:50 by ametta            #+#    #+#             */
-/*   Updated: 2021/06/11 15:36:54 by ametta           ###   ########.fr       */
+/*   Created: 2021/06/11 10:16:43 by ametta            #+#    #+#             */
+/*   Updated: 2021/06/11 15:36:04 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "../utils.h"
 
-# define TEXT_SIZE 1024
-
-# include <signal.h>
-# include "../utils/utils.h"
-
-#endif
+int	ft_isspace(const char c)
+{
+	if (c == ' ' || c == '\t' || c == '\v' || c == '\r' || c == '\n'
+		|| c == '\f')
+		return (1);
+	return (0);
+}

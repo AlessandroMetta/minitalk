@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/11 10:59:50 by ametta            #+#    #+#             */
-/*   Updated: 2021/06/11 12:33:52 by ametta           ###   ########.fr       */
+/*   Created: 2021/06/11 15:37:53 by ametta            #+#    #+#             */
+/*   Updated: 2021/06/11 15:38:05 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#ifndef UTILS_H
+# define UTILS_H
 
-int	ft_isdigit(int c)
-{
-	if (c >= '0' && c <= '9')
-		return (1);
-	else
-		return (0);
-}
+# include <unistd.h>
+# include <stdlib.h>
+
+void			ft_putstr(const char *s);
+void			ft_putnbr(const int n);
+void			ft_putchar(const char c);
+int				ft_atoi(const char *str);
+int				ft_isspace(const char c);
+int				ft_isdigit(const int c);
+void			ft_putendl(const char *s);
+unsigned char	*ft_realloc(unsigned char *str, int to_add);
+
+#endif
