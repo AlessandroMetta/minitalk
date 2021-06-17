@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 12:48:46 by ametta            #+#    #+#             */
-/*   Updated: 2021/06/11 15:36:13 by ametta           ###   ########.fr       */
+/*   Updated: 2021/06/17 17:18:19 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ unsigned char	*ft_realloc(unsigned char *str, int to_add)
 		while (len < to_add)
 			new[len] = '\0';
 	}
+	free(str);
 	return (new);
 }

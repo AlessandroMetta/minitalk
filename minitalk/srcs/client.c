@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 09:37:08 by ametta            #+#    #+#             */
-/*   Updated: 2021/06/11 15:18:50 by ametta           ###   ########.fr       */
+/*   Updated: 2021/06/17 17:36:31 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	char_to_bin(unsigned char chr, int server_pid)
 	int	i;
 
 	i = 0;
-	while (i < 32)
+	while (i < 8)
 	{
 		if (chr % 2 == 1)
 			kill(server_pid, SIGUSR1);

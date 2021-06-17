@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 18:28:06 by ametta            #+#    #+#             */
-/*   Updated: 2021/06/11 15:24:18 by ametta           ###   ########.fr       */
+/*   Updated: 2021/06/17 17:36:26 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static unsigned char	convert_bin_to_dec(int *bin)
 
 static void	decode(int sig)
 {
-	static int				bin[32];
+	static int				bin[8];
 	static int				i = 0;
 	static int				j = 0;
 	static unsigned char	*str = NULL;
@@ -54,7 +54,7 @@ static void	decode(int sig)
 		bin[i++] = 1;
 	else if (sig == SIGUSR2)
 		bin[i++] = 0;
-	if (i > 31)
+	if (i > 7)
 	{
 		if (j == TEXT_SIZE)
 			str = ft_realloc(str, TEXT_SIZE);
