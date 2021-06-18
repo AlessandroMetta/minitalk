@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   minitalk_bonus.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/11 10:59:50 by ametta            #+#    #+#             */
-/*   Updated: 2021/06/11 15:36:02 by ametta           ###   ########.fr       */
+/*   Created: 2021/06/11 12:32:50 by ametta            #+#    #+#             */
+/*   Updated: 2021/06/18 11:16:42 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../utils.h"
+#ifndef MINITALK_BONUS_H
+# define MINITALK_BONUS_H
 
-int	ft_isdigit(const int c)
-{
-	if (c >= '0' && c <= '9')
-		return (1);
-	else
-		return (0);
-}
+# define TEXT_SIZE 1024
+
+# include <signal.h>
+# include "../utils/utils.h"
+
+char		*ft_itoa(int n);
+
+#endif

@@ -1,16 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/11 10:11:12 by ametta            #+#    #+#             */
-/*   Updated: 2021/06/11 15:36:01 by ametta           ###   ########.fr       */
+/*   Created: 2021/06/18 08:47:42 by ametta            #+#    #+#             */
+/*   Updated: 2021/06/18 08:48:45 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../utils.h"
+#include "utils.h"
+
+int	ft_isspace(const char c)
+{
+	if (c == ' ' || c == '\t' || c == '\v' || c == '\r' || c == '\n'
+		|| c == '\f')
+		return (1);
+	return (0);
+}
+
+int	ft_isdigit(const int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	else
+		return (0);
+}
 
 int	ft_atoi(const char *str)
 {
