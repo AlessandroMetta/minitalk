@@ -2,60 +2,54 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
 
-NAME_SERVER = server
-NAME_CLIENT = client
-NAME_SERVER_BONUS = server_bonus
-NAME_CLIENT_BONUS = client_bonus
-NAME_UTILS = utils
+SRCS_DIR = bonus/srcs
+UTILS_DIR = utils
 
-SERVER_SRCS = mandatory/srcs/server.c
-CLIENT_SRCS = mandatory/srcs/client.c
-SERVER_OBJS = $(SERVER_SRCS:.c=.o)
-CLIENT_OBJS = $(CLIENT_SRCS:.c=.o)
+GREEN = '\033[0;32m'
+WHITE = '\033[0;37m'
 
-SERVER_SRCS_BONUS = bonus/srcs/server_bonus.c
-CLIENT_SRCS_BONUS = bonus/srcs/client_bonus.c bonus/srcs/utils_bonus.c
-SERVER_OBJS_BONUS = $(SERVER_SRCS_BONUS:.c=.o)
-CLIENT_OBJS_BONUS = $(CLIENT_SRCS_BONUS:.c=.o)
+OBJS_DIR = objs
 
-UTILS_SRCS = utils/utils1.c utils/utils2.c
-UTILS_OBJS = $(UTILS_SRCS:.c=.o)
+SERVER_SRCS_FILES = server_bonus.c
+CLIENT_SRCS_FILES = client_bonus.c
+UTILS_FILES = utils1.c utils2.c utils_bonus.c
 
-all: fclean $(NAME_UTILS) $(NAME_SERVER) $(NAME_CLIENT)
+OBJS_SERVER = $(SERVER_SRCS_FILES:%.c=%.o)
+OBJS_CLIENT = $(CLIENT_SRCS_FILES:%.c=%.o)
+OBJS_UTILS = $(UTILS_FILES:%.c=%.o)
 
-$(NAME_UTILS) : $(UTILS_OBJS)
-				@echo [utils compiled]
+SERVER_SRCS_PATH = $(addprefix $(SRCS_DIR)/, $(SERVER_SRCS_FILES))
+CLIENT_SRCS_PATH = $(addprefix $(SRCS_DIR)/, $(CLIENT_SRCS_FILES))
+UTILS_PATH = $(addprefix $(UTILS_DIR)/, $(UTILS_FILES))
+SRCS_PATH = $(SERVER_SRCS_PATH) $(CLIENT_SRCS_PATH) $(UTILS_PATH)
 
-$(NAME_SERVER): $(SERVER_OBJS)
-				@$(CC) $(CFLAGS) -o $(NAME_SERVER) $(SERVER_OBJS) $(UTILS_OBJS)
-				@echo [server execute created]
+OBJS_SERVER_FILES = $(addprefix $(OBJS_DIR)/, $(OBJS_SERVER))
+OBJS_CLIENT_FILES = $(addprefix $(OBJS_DIR)/, $(OBJS_CLIENT))
+OBJS_UTILS_FILES = $(addprefix $(OBJS_DIR)/, $(OBJS_UTILS))
+OBJS = $(OBJS_SERVER_FILES) $(OBJS_CLIENT_FILES) $(OBJS_UTILS_FILES)
 
-$(NAME_CLIENT): $(CLIENT_OBJS)
-				@$(CC) $(CFLAGS) -o $(NAME_CLIENT) $(CLIENT_OBJS) $(UTILS_OBJS)
-				@echo [client execute created]
+all : $(OBJS)
+		@$(CC) $(CFLAGS) $(OBJS_SERVER_FILES) $(OBJS_UTILS_FILES) -o server
+		@echo $(GREEN)[server executable created]$(WHITE)
+		@$(CC) $(CFLAGS) $(OBJS_CLIENT_FILES) $(OBJS_UTILS_FILES) -o client
+		@echo $(GREEN)[client executable created]$(WHITE)
+		@echo $(GREEN)[DONE]$(WHITE)
 
-bonus : fclean $(NAME_UTILS) $(NAME_SERVER_BONUS) $(NAME_CLIENT_BONUS)
+$(OBJS) : $(SRCS_PATH)
+			@$(CC) $(CFLAGS) $(SRCS_PATH) -c
+			@mv *.o objs
+			@echo $(GREEN)[objects file compiled]$(WHITE)
 
-$(NAME_SERVER_BONUS): $(SERVER_OBJS_BONUS)
-						@$(CC) $(CFLAGS) -o $(NAME_SERVER_BONUS) $(SERVER_OBJS_BONUS) $(UTILS_OBJS)
-						@echo [BONUS server execute created]
-				
-$(NAME_CLIENT_BONUS): $(CLIENT_OBJS_BONUS)
-						@$(CC) $(CFLAGS) -o $(NAME_CLIENT_BONUS) $(CLIENT_OBJS_BONUS) $(UTILS_OBJS)
-						@echo [BONUS client execute created]
+bonus : all 
 
 clean:
-		@rm -f $(SERVER_OBJS)
-		@rm -f $(CLIENT_OBJS)
-		@rm -f $(SERVER_OBJS_BONUS)
-		@rm -f $(CLIENT_OBJS_BONUS)
-		@rm -f $(UTILS_OBJS)
+		@rm -f $(OBJS)
+		@echo $(GREEN)[objects files deleted]$(WHITE)
 
 fclean:	clean
-		@rm -f $(NAME_SERVER)
-		@rm -f $(NAME_CLIENT)
-		@rm -f $(NAME_SERVER_BONUS)
-		@rm -f $(NAME_CLIENT_BONUS)
+		@rm -f server
+		@rm -f client
+		@echo $(GREEN)[executable files deleted]$(WHITE)
 
 re:		fclean all
 

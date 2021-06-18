@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 18:28:06 by ametta            #+#    #+#             */
-/*   Updated: 2021/06/18 11:37:59 by ametta           ###   ########.fr       */
+/*   Updated: 2021/06/18 18:20:16 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,26 @@ static unsigned char	convert_bin_to_dec(int *bin)
 	return ((char)c);
 }
 
+static void	additional(int *j, unsigned char **str, int *client_pid)
+{
+	if ((*str)[*j - 1] == 0 && !*client_pid)
+	{
+		*client_pid = ft_atoi((char *)(*str));
+		free(*str);
+		*str = NULL;
+		*j = 0;
+	}
+	else if ((*str)[*j - 1] == 0)
+	{
+		ft_putendl((char *)*str);
+		free(*str);
+		*str = NULL;
+		*j = 0;
+		kill(*client_pid, SIGUSR1);
+		*client_pid = 0;
+	}
+}
+
 static void	decode(int sig)
 {
 	static int				bin[8];
@@ -60,22 +80,7 @@ static void	decode(int sig)
 		if (j == TEXT_SIZE)
 			str = ft_realloc(str, TEXT_SIZE);
 		str[j++] = convert_bin_to_dec(bin);
-		if (str[j - 1] == 0 && !client_pid)
-		{
-			client_pid = ft_atoi((char *)str);
-			free(str);
-			str = NULL;
-			j = 0;
-		}
-		else if (str[j - 1] == 0)
-		{
-			ft_putendl((char *)str);
-			free(str);
-			str = NULL;
-			j = 0;
-			kill(client_pid, SIGUSR1);
-			client_pid = 0;
-		}
+		additional(&j, &str, &client_pid);
 		i = 0;
 	}
 }

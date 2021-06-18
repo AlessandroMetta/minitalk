@@ -6,11 +6,11 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:12:35 by ametta            #+#    #+#             */
-/*   Updated: 2021/06/18 11:15:44 by ametta           ###   ########.fr       */
+/*   Updated: 2021/06/18 18:54:10 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minitalk_bonus.h"
+#include "utils.h"
 
 static int	ft_digit(int n)
 {
@@ -32,7 +32,8 @@ static char	*ft_isneg(int n)
 
 	n *= -1;
 	i = ft_digit(n) + 1;
-	if (!(str = (char*)malloc(i * sizeof(char))))
+	str = (char *)malloc(i * sizeof(char));
+	if (!str)
 		return (NULL);
 	str[--i] = 0;
 	while (--i > 0)
@@ -52,7 +53,8 @@ static char	*ft_ispos(int n)
 	int		i;
 
 	i = ft_digit(n);
-	if (!(str = (char*)malloc(i * sizeof(char))))
+	str = (char *)malloc(i * sizeof(char));
+	if (!str)
 		return (NULL);
 	str[--i] = 0;
 	while (--i >= 0)
@@ -72,7 +74,8 @@ static char	*ft_minint(int n)
 
 	n /= -10;
 	i = ft_digit(n) + 2;
-	if (!(str = (char*)malloc(i * sizeof(char))))
+	str = (char *)malloc(i * sizeof(char));
+	if (!str)
 		return (NULL);
 	str[--i] = 0;
 	str[--i] = 8 + 48;
@@ -87,13 +90,14 @@ static char	*ft_minint(int n)
 	return (str);
 }
 
-char		*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
-	char *str;
+	char	*str;
 
 	if (n == -0 || n == +0)
 	{
-		if (!(str = malloc(2 * sizeof(char))))
+		str = malloc(2 * sizeof(char));
+		if (!str)
 			return (NULL);
 		str[0] = '0';
 		str[1] = 0;

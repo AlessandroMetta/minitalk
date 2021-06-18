@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 15:37:53 by ametta            #+#    #+#             */
-/*   Updated: 2021/06/11 15:38:05 by ametta           ###   ########.fr       */
+/*   Updated: 2021/06/18 18:38:38 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ int				ft_isspace(const char c);
 int				ft_isdigit(const int c);
 void			ft_putendl(const char *s);
 unsigned char	*ft_realloc(unsigned char *str, int to_add);
+char			*ft_itoa(int n);
 
 #endif

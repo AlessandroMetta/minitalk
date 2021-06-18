@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 12:32:50 by ametta            #+#    #+#             */
-/*   Updated: 2021/06/18 11:16:42 by ametta           ###   ########.fr       */
+/*   Updated: 2021/06/18 18:38:32 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,5 @@
 
 # include <signal.h>
 # include "../utils/utils.h"
-
-char		*ft_itoa(int n);
 
 #endif
