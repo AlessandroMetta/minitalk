@@ -1,18 +1,16 @@
 CC = gcc
-
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS_DIR = bonus/srcs
-UTILS_DIR = utils
+SRCS_DIR = .
+OBJS_DIR = .
+UTILS_DIR = utils/srcs
 
-GREEN = '\033[0;32m'
-WHITE = '\033[0;37m'
+FONT_COLOR_GREEN = '\033[0;32m'
+FONT_COLOR_WHITE = '\033[0;37m'
 
-OBJS_DIR = objs
-
-SERVER_SRCS_FILES = server_bonus.c
-CLIENT_SRCS_FILES = client_bonus.c
-UTILS_FILES = utils1.c utils2.c utils_bonus.c
+SERVER_SRCS_FILES = server.c
+CLIENT_SRCS_FILES = client.c
+UTILS_FILES = utils1.c utils2.c utils_bonus.c put_str_in_color.c
 
 OBJS_SERVER = $(SERVER_SRCS_FILES:%.c=%.o)
 OBJS_CLIENT = $(CLIENT_SRCS_FILES:%.c=%.o)
@@ -28,28 +26,26 @@ OBJS_CLIENT_FILES = $(addprefix $(OBJS_DIR)/, $(OBJS_CLIENT))
 OBJS_UTILS_FILES = $(addprefix $(OBJS_DIR)/, $(OBJS_UTILS))
 OBJS = $(OBJS_SERVER_FILES) $(OBJS_CLIENT_FILES) $(OBJS_UTILS_FILES)
 
-all : $(OBJS)
+all:	$(OBJS)
 		@$(CC) $(CFLAGS) $(OBJS_SERVER_FILES) $(OBJS_UTILS_FILES) -o server
-		@echo $(GREEN)[server executable created]$(WHITE)
-		@$(CC) $(CFLAGS) $(OBJS_CLIENT_FILES) $(OBJS_UTILS_FILES) -o client
-		@echo $(GREEN)[client executable created]$(WHITE)
-		@echo $(GREEN)[DONE]$(WHITE)
+		@echo $(FONT_COLOR_GREEN)[server executable create]$(FONT_COLOR_WHITE)
+		@$(CC) $(FONT_COLOR_CFLAGS) $(OBJS_CLIENT_FILES) $(OBJS_UTILS_FILES) -o client
+		@echo $(FONT_COLOR_GREEN)[client executable create]$(FONT_COLOR_WHITE)
 
-$(OBJS) : $(SRCS_PATH)
+$(OBJS):	$(SRCS_PATH)
 			@$(CC) $(CFLAGS) $(SRCS_PATH) -c
-			@mv *.o objs
-			@echo $(GREEN)[objects file compiled]$(WHITE)
+			@echo $(FONT_COLOR_GREEN)[objects file compile]$(FONT_COLOR_WHITE)
 
-bonus : all 
+bonus:	all
 
 clean:
 		@rm -f $(OBJS)
-		@echo $(GREEN)[objects files deleted]$(WHITE)
+		@echo $(FONT_COLOR_GREEN)[objects files delete]$(FONT_COLOR_WHITE)
 
 fclean:	clean
 		@rm -f server
 		@rm -f client
-		@echo $(GREEN)[executable files deleted]$(WHITE)
+		@echo $(FONT_COLOR_GREEN)[executable files delete]$(FONT_COLOR_WHITE)
 
 re:		fclean all
 

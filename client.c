@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client_bonus.c                                     :+:      :+:    :+:   */
+/*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/11 09:37:08 by ametta            #+#    #+#             */
-/*   Updated: 2021/06/18 18:08:40 by ametta           ###   ########.fr       */
+/*   Created: 2021/06/19 15:14:56 by ametta            #+#    #+#             */
+/*   Updated: 2021/06/19 17:26:10 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minitalk_bonus.h"
+#include "minitalk.h"
 
 static void	char_to_bin(unsigned char chr, int server_pid)
 {
@@ -32,7 +32,7 @@ static void	char_to_bin(unsigned char chr, int server_pid)
 void	message(int null)
 {
 	(void)null;
-	ft_putstr("message delivered and printed\n");
+	put_str_in_color(TEXT_COLOR_GREEN, "message delivered and printed\n");
 	exit(EXIT_SUCCESS);
 }
 
@@ -56,14 +56,17 @@ int	main(int argc, char **argv)
 		server_pid = ft_atoi(argv[1]);
 		if (!server_pid)
 		{
-			ft_putstr("INVALID PID\n");
+			put_str_in_color(TEXT_COLOR_RED, "ERROR: invalid PID\n");
 			return (1);
 		}
 		send_str(ft_itoa(getpid()), server_pid);
 		send_str(argv[2], server_pid);
-		pause();
+		sleep(1);
+		put_str_in_color(TEXT_COLOR_RED, "ERROR: something goes wrong\n");
+		return (EXIT_FAILURE);
 	}
-	ft_putstr("WRONG ARGUMENT\n");
-	ft_putstr("Usage: ./client [server pid] \"text to send\"\n");
+	put_str_in_color(TEXT_COLOR_RED, "WRONG ARGUMENT\n");
+	put_str_in_color(TEXT_COLOR_RED, "Usage: ./client [server pid] ");
+	put_str_in_color(TEXT_COLOR_RED, "\"text to send\"\n");
 	return (EXIT_FAILURE);
 }

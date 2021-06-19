@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server_bonus.c                                     :+:      :+:    :+:   */
+/*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/10 18:28:06 by ametta            #+#    #+#             */
-/*   Updated: 2021/06/18 18:20:16 by ametta           ###   ########.fr       */
+/*   Created: 2021/06/19 15:15:14 by ametta            #+#    #+#             */
+/*   Updated: 2021/06/19 18:16:25 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minitalk_bonus.h"
+#include "minitalk.h"
 
 static int	power_of_two(int pow)
 {
@@ -38,14 +38,16 @@ static unsigned char	convert_bin_to_dec(int *bin)
 			c += power_of_two(i);
 		i--;
 	}
-	return ((char)c);
+	return ((unsigned char)c);
 }
 
-static void	additional(int *j, unsigned char **str, int *client_pid)
+static void	additional(int *j, unsigned char **str)
 {
-	if ((*str)[*j - 1] == 0 && !*client_pid)
+	static int	client_pid = 0;
+
+	if ((*str)[*j - 1] == 0 && !client_pid)
 	{
-		*client_pid = ft_atoi((char *)(*str));
+		client_pid = ft_atoi((char *)(*str));
 		free(*str);
 		*str = NULL;
 		*j = 0;
@@ -56,8 +58,8 @@ static void	additional(int *j, unsigned char **str, int *client_pid)
 		free(*str);
 		*str = NULL;
 		*j = 0;
-		kill(*client_pid, SIGUSR1);
-		*client_pid = 0;
+		kill(client_pid, SIGUSR1);
+		client_pid = 0;
 	}
 }
 
@@ -67,7 +69,7 @@ static void	decode(int sig)
 	static int				i = 0;
 	static int				j = 0;
 	static unsigned char	*str = NULL;
-	static int				client_pid = 0;
+	static int				realloc_counter = 1;
 
 	if (!str)
 		str = (unsigned char *)malloc(sizeof(unsigned char) * TEXT_SIZE);
@@ -77,10 +79,13 @@ static void	decode(int sig)
 		bin[i++] = 0;
 	if (i > 7)
 	{
-		if (j == TEXT_SIZE)
+		if (j == (TEXT_SIZE * realloc_counter))
+		{
 			str = ft_realloc(str, TEXT_SIZE);
+			realloc_counter++;
+		}
 		str[j++] = convert_bin_to_dec(bin);
-		additional(&j, &str, &client_pid);
+		additional(&j, &str);
 		i = 0;
 	}
 }
@@ -90,11 +95,14 @@ int	main(void)
 	pid_t	pid;
 
 	pid = getpid();
-	ft_putstr("Welcome into Minitalk - BONUS\n");
-	ft_putstr("To start the chat, share this code to the client: ");
-	ft_putnbr(pid);
-	ft_putstr("\nThe chat will begin from here. Have fun!\n");
-	ft_putstr("------------------------------------------\n");
+	put_str_in_color(TEXT_COLOR_GREEN, "\t\t\tWelcome in Minitalk\n");
+	put_str_in_color(TEXT_COLOR_GREEN, "To start the chat,");
+	put_str_in_color(TEXT_COLOR_GREEN, "share this code to the client: ");
+	put_str_in_color(TEXT_COLOR_GREEN, ft_itoa(pid));
+	put_str_in_color(TEXT_COLOR_GREEN, "\nThe chat will begin from here. ");
+	put_str_in_color(TEXT_COLOR_GREEN, "Have fun!\n");
+	put_str_in_color(TEXT_COLOR_GREEN, "=================================");
+	put_str_in_color(TEXT_COLOR_GREEN, "=================================\n");
 	while (1)
 	{
 		signal(SIGUSR1, decode);

@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/18 11:12:35 by ametta            #+#    #+#             */
-/*   Updated: 2021/06/18 18:54:10 by ametta           ###   ########.fr       */
+/*   Created: 2021/06/19 15:15:06 by ametta            #+#    #+#             */
+/*   Updated: 2021/06/19 15:34:26 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "../utils.h"
 
 static int	ft_digit(int n)
 {

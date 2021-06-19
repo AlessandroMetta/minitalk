@@ -1,31 +1,66 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils2.c                                           :+:      :+:    :+:   */
+/*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/18 08:47:42 by ametta            #+#    #+#             */
-/*   Updated: 2021/06/18 18:01:23 by ametta           ###   ########.fr       */
+/*   Created: 2021/06/19 15:15:03 by ametta            #+#    #+#             */
+/*   Updated: 2021/06/19 18:14:33 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "../utils.h"
 
-int	ft_isspace(const char c)
+unsigned char	*ft_realloc(unsigned char *str, int to_add)
 {
-	if (c == ' ' || c == '\t' || c == '\v' || c == '\r' || c == '\n'
-		|| c == '\f')
-		return (1);
-	return (0);
+	unsigned char	*new;
+	int				len;
+
+	len = 0;
+	if (str)
+		while (str[len])
+			len++;
+	new = (unsigned char *)malloc(sizeof(unsigned char) * (len + to_add));
+	if (new)
+	{
+		len = 0;
+		if (str)
+		{
+			while (str[len])
+			{
+				new[len] = str[len];
+				len++;
+			}
+		}
+		while (len < to_add)
+			new[len] = '\0';
+	}
+	free(str);
+	return (new);
 }
-
-int	ft_isdigit(const int c)
+void	ft_putnbr(const int n)
 {
-	if (c >= '0' && c <= '9')
-		return (1);
+	if (n == -2147483648)
+	{
+		ft_putchar('-');
+		ft_putchar('2');
+		ft_putnbr(147483648);
+	}
+	else if (n < 0)
+	{
+		ft_putchar('-');
+		ft_putnbr((n) * (-1));
+	}
+	else if (n < 10)
+	{
+		ft_putchar(n + 48);
+	}
 	else
-		return (0);
+	{
+		ft_putnbr(n / 10);
+		ft_putchar(((n % 10) + 48));
+	}
 }
 
 int	ft_atoi(const char *str)
@@ -50,7 +85,7 @@ int	ft_atoi(const char *str)
 	}
 	if ((num > 2147483648 && sign == -1) || (num > 2147483647 && sign == 1))
 	{
-		ft_putstr("ERROR: OVER INTEGER RANGE\n");
+		put_str_in_color(TEXT_COLOR_RED, "ERROR: OVER INTEGER RANGE\n");
 		exit(1);
 	}
 	return (num * sign);
