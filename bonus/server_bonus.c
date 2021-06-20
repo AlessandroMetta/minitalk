@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 15:15:14 by ametta            #+#    #+#             */
-/*   Updated: 2021/06/20 16:38:48 by ametta           ###   ########.fr       */
+/*   Updated: 2021/06/20 17:33:59 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static unsigned char	convert_bin_to_dec(int *bin)
 	int			i;
 	int			c;
 
-	i = 32;
+	i = 8;
 	c = 0;
 	while (i >= 0)
 	{

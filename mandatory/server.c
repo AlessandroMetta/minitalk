@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 15:15:14 by ametta            #+#    #+#             */
-/*   Updated: 2021/06/19 18:16:25 by ametta           ###   ########.fr       */
+/*   Updated: 2021/06/20 19:14:56 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,66 +25,55 @@ static int	power_of_two(int pow)
 	return (res);
 }
 
-static unsigned char	convert_bin_to_dec(int *bin)
+static char	convert_bin_to_char(int *signal_collector)
 {
 	int			i;
-	int			c;
+	int		c;
 
-	i = 32;
+	i = 8;
 	c = 0;
 	while (i >= 0)
 	{
-		if (bin[i] == 1)
+		if (signal_collector[i] == 1)
 			c += power_of_two(i);
 		i--;
 	}
-	return ((unsigned char)c);
+	return ((char)c);
 }
 
-static void	additional(int *j, unsigned char **str)
+static void	additional(int *j, char **str)
 {
-	static int	client_pid = 0;
-
-	if ((*str)[*j - 1] == 0 && !client_pid)
+	if ((*str)[*j - 1] == 0)
 	{
-		client_pid = ft_atoi((char *)(*str));
+		ft_putendl(*str);
 		free(*str);
 		*str = NULL;
 		*j = 0;
-	}
-	else if ((*str)[*j - 1] == 0)
-	{
-		ft_putendl((char *)*str);
-		free(*str);
-		*str = NULL;
-		*j = 0;
-		kill(client_pid, SIGUSR1);
-		client_pid = 0;
 	}
 }
 
 static void	decode(int sig)
 {
-	static int				bin[8];
+	static int				signal_collector[8];
 	static int				i = 0;
 	static int				j = 0;
-	static unsigned char	*str = NULL;
-	static int				realloc_counter = 1;
+	static char				*str = NULL;
+	static int				realloc_counter = 16;
 
 	if (!str)
-		str = (unsigned char *)malloc(sizeof(unsigned char) * TEXT_SIZE);
+		str = (char *)malloc(sizeof(char) * realloc_counter);
 	if (sig == SIGUSR1)
-		bin[i++] = 1;
+		signal_collector[i++] = 1;
 	else if (sig == SIGUSR2)
-		bin[i++] = 0;
+		signal_collector[i++] = 0;
 	if (i > 7)
 	{
-		if (j == (TEXT_SIZE * realloc_counter))
+		if (j == realloc_counter)
 		{
-			str = ft_realloc(str, TEXT_SIZE);
-			realloc_counter++;
+			str = ft_realloc(&str, realloc_counter);
+			realloc_counter *= realloc_counter;
 		}
-		str[j++] = convert_bin_to_dec(bin);
+		str[j++] = convert_bin_to_char(signal_collector);
 		additional(&j, &str);
 		i = 0;
 	}

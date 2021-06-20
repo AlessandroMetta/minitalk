@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 15:15:03 by ametta            #+#    #+#             */
-/*   Updated: 2021/06/20 16:44:14 by ametta           ###   ########.fr       */
+/*   Updated: 2021/06/20 19:06:13 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,33 +19,36 @@ void	put_str_in_color(char *color, char *str)
 	ft_putstr(TEXT_COLOR_DEFAULT);
 }
 
-unsigned char	*ft_realloc(unsigned char *str, int to_add)
-{
-	unsigned char	*new;
-	int				len;
+#include <stdio.h>
 
-	len = 0;
-	if (str)
-		while (str[len])
-			len++;
-	new = (unsigned char *)malloc(sizeof(unsigned char) * (len + to_add));
+char	*ft_realloc(char **str, int to_add)
+{
+	char	*new;
+	int		len;
+
+	len = -1;
+	if (*str)
+	{
+		while ((*str)[++len])
+			;
+	}
+	new = malloc(sizeof(char) * (len + to_add));
 	if (new)
 	{
-		len = 0;
+		len = -1;
 		if (str)
 		{
-			while (str[len])
-			{
-				new[len] = str[len];
-				len++;
-			}
+			while ((*str)[++len])
+				new[len] = (*str)[len];
 		}
 		while (len < to_add)
-			new[len] = '\0';
+			new[len] = 0;
 	}
-	free(str);
+	free(*str);
+	*str = NULL;
 	return (new);
 }
+
 void	ft_putnbr(const int n)
 {
 	if (n == -2147483648)

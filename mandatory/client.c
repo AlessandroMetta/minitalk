@@ -6,13 +6,13 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 15:14:56 by ametta            #+#    #+#             */
-/*   Updated: 2021/06/19 17:26:10 by ametta           ###   ########.fr       */
+/*   Updated: 2021/06/20 18:51:02 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-static void	char_to_bin(unsigned char chr, int server_pid)
+static void	char_to_bin(char chr, int server_pid)
 {
 	int	i;
 
@@ -29,13 +29,6 @@ static void	char_to_bin(unsigned char chr, int server_pid)
 	}
 }
 
-void	message(int null)
-{
-	(void)null;
-	put_str_in_color(TEXT_COLOR_GREEN, "message delivered and printed\n");
-	exit(EXIT_SUCCESS);
-}
-
 void	send_str(char *str, int server_pid)
 {
 	int	i;
@@ -50,7 +43,6 @@ int	main(int argc, char **argv)
 {
 	int	server_pid;
 
-	signal(SIGUSR1, message);
 	if (argc == 3)
 	{
 		server_pid = ft_atoi(argv[1]);
@@ -59,11 +51,8 @@ int	main(int argc, char **argv)
 			put_str_in_color(TEXT_COLOR_RED, "ERROR: invalid PID\n");
 			return (1);
 		}
-		send_str(ft_itoa(getpid()), server_pid);
 		send_str(argv[2], server_pid);
-		sleep(1);
-		put_str_in_color(TEXT_COLOR_RED, "ERROR: something goes wrong\n");
-		return (EXIT_FAILURE);
+		return (EXIT_SUCCESS);
 	}
 	put_str_in_color(TEXT_COLOR_RED, "WRONG ARGUMENT\n");
 	put_str_in_color(TEXT_COLOR_RED, "Usage: ./client [server pid] ");
