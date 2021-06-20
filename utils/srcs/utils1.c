@@ -6,11 +6,18 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 15:15:03 by ametta            #+#    #+#             */
-/*   Updated: 2021/06/19 18:14:33 by ametta           ###   ########.fr       */
+/*   Updated: 2021/06/20 16:44:14 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../utils.h"
+
+void	put_str_in_color(char *color, char *str)
+{
+	ft_putstr(color);
+	ft_putstr(str);
+	ft_putstr(TEXT_COLOR_DEFAULT);
+}
 
 unsigned char	*ft_realloc(unsigned char *str, int to_add)
 {

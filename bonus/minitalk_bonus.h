@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_str_in_color.c                                 :+:      :+:    :+:   */
+/*   minitalk_bonus.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/19 15:51:53 by ametta            #+#    #+#             */
-/*   Updated: 2021/06/19 16:34:09 by ametta           ###   ########.fr       */
+/*   Created: 2021/06/19 15:15:09 by ametta            #+#    #+#             */
+/*   Updated: 2021/06/20 16:57:05 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../utils.h"
+#ifndef MINITALK_BONUS_H
+# define MINITALK_BONUS_H
 
-void	put_str_in_color(char *color, char *str)
-{
-	ft_putstr(color);
-	ft_putstr(str);
-	ft_putstr(TEXT_COLOR_DEFAULT);
-}
+# define TEXT_SIZE 1024
+
+# include <signal.h>
+# include "../utils/utils.h"
+
+#endif

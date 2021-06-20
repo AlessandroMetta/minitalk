@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 15:15:09 by ametta            #+#    #+#             */
-/*   Updated: 2021/06/19 18:15:13 by ametta           ###   ########.fr       */
+/*   Updated: 2021/06/20 16:36:46 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@
 # define TEXT_SIZE 1024
 
 # include <signal.h>
-# include "utils/utils.h"
+# include "../utils/utils.h"
 
 #endif
