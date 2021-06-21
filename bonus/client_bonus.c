@@ -6,13 +6,13 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 15:14:56 by ametta            #+#    #+#             */
-/*   Updated: 2021/06/20 16:38:55 by ametta           ###   ########.fr       */
+/*   Updated: 2021/06/21 16:00:44 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk_bonus.h"
 
-static void	char_to_bin(unsigned char chr, int server_pid)
+static void	unchar_to_bin(unsigned char chr, int server_pid)
 {
 	int	i;
 
@@ -24,7 +24,7 @@ static void	char_to_bin(unsigned char chr, int server_pid)
 		else if (chr % 2 == 0)
 			kill(server_pid, SIGUSR2);
 		chr /= 2;
-		usleep(50);
+		usleep(100);
 		i++;
 	}
 }
@@ -42,13 +42,14 @@ void	send_str(char *str, int server_pid)
 
 	i = -1;
 	while (str[++i])
-		char_to_bin(str[i], server_pid);
-	char_to_bin(0, server_pid);
+		unchar_to_bin(str[i], server_pid);
+	unchar_to_bin(0, server_pid);
 }
 
 int	main(int argc, char **argv)
 {
-	int	server_pid;
+	int		server_pid;
+	char	*str;
 
 	signal(SIGUSR1, message);
 	if (argc == 3)
@@ -57,9 +58,11 @@ int	main(int argc, char **argv)
 		if (!server_pid)
 		{
 			put_str_in_color(TEXT_COLOR_RED, "ERROR: invalid PID\n");
-			return (1);
+			return (EXIT_FAILURE);
 		}
-		send_str(ft_itoa(getpid()), server_pid);
+		str = ft_itoa(getpid());
+		send_str(str, server_pid);
+		free(str);
 		send_str(argv[2], server_pid);
 		sleep(1);
 		put_str_in_color(TEXT_COLOR_RED, "ERROR: something goes wrong\n");

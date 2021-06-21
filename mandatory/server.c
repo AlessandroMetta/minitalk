@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 15:15:14 by ametta            #+#    #+#             */
-/*   Updated: 2021/06/21 12:28:23 by ametta           ###   ########.fr       */
+/*   Updated: 2021/06/21 15:48:42 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,9 @@ static void	additional(int *j, char **str, int *realloc_counter)
 		free(*str);
 		*str = NULL;
 		*j = -1;
-		*realloc_counter = 16;
+		*realloc_counter = STR_MAX_LEN;
 	}
 }
-// if (str[j] == 0)
-// {
-	// ft_putendl(str);
-	// free(str);
-	// str = NULL;
-	// realloc_counter = 16;
-	// j = -1;
-// }
 
 static void	decode(int sig)
 {
@@ -67,7 +59,7 @@ static void	decode(int sig)
 	static int	i = 0;
 	static int	j = 0;
 	static char	*str = NULL;
-	static int	realloc_counter = 16;
+	static int	realloc_counter = STR_MAX_LEN;
 
 	if (!str)
 		str = malloc(sizeof(char) * realloc_counter);
@@ -102,5 +94,5 @@ int	main(void)
 		signal(SIGUSR2, decode);
 		pause();
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }

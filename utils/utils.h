@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 15:37:53 by ametta            #+#    #+#             */
-/*   Updated: 2021/06/21 09:39:47 by ametta           ###   ########.fr       */
+/*   Updated: 2021/06/21 16:03:11 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define TEXT_COLOR_GREEN	"\033[0;32m"
 # define TEXT_COLOR_RED		"\033[0;31m"
 # define TEXT_COLOR_DEFAULT	"\033[0m"
+# define STR_MAX_LEN 16
 
 void	ft_putstr(const char *s);
 void	ft_putnbr(const int n);

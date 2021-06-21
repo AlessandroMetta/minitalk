@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 15:14:56 by ametta            #+#    #+#             */
-/*   Updated: 2021/06/21 12:13:15 by ametta           ###   ########.fr       */
+/*   Updated: 2021/06/21 15:44:20 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	char_to_bin(char chr, int server_pid)
 		else if (chr % 2 == 0)
 			kill(server_pid, SIGUSR2);
 		chr /= 2;
-		usleep(50);
+		usleep(100);
 		i++;
 	}
 }
@@ -51,7 +51,7 @@ int	main(int argc, char **argv)
 		if (!server_pid)
 		{
 			put_str_in_color(TEXT_COLOR_RED, "ERROR: invalid PID\n");
-			return (1);
+			return (EXIT_FAILURE);
 		}
 		send_str(argv[2], server_pid);
 		return (EXIT_SUCCESS);
