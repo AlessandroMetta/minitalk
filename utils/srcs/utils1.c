@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 15:15:03 by ametta            #+#    #+#             */
-/*   Updated: 2021/06/20 19:06:13 by ametta           ###   ########.fr       */
+/*   Updated: 2021/06/21 09:14:12 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,15 @@ void	put_str_in_color(char *color, char *str)
 	ft_putstr(TEXT_COLOR_DEFAULT);
 }
 
-#include <stdio.h>
-
-char	*ft_realloc(char **str, int to_add)
+char	*ft_realloc(char *str, int to_add)
 {
 	char	*new;
 	int		len;
 
 	len = -1;
-	if (*str)
+	if (str)
 	{
-		while ((*str)[++len])
+		while (str[++len])
 			;
 	}
 	new = malloc(sizeof(char) * (len + to_add));
@@ -38,14 +36,14 @@ char	*ft_realloc(char **str, int to_add)
 		len = -1;
 		if (str)
 		{
-			while ((*str)[++len])
-				new[len] = (*str)[len];
+			while (str[++len])
+				new[len] = str[len];
 		}
 		while (len < to_add)
 			new[len] = 0;
 	}
-	free(*str);
-	*str = NULL;
+	free(str);
+	str = NULL;
 	return (new);
 }
 

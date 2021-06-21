@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 15:15:14 by ametta            #+#    #+#             */
-/*   Updated: 2021/06/20 19:14:56 by ametta           ###   ########.fr       */
+/*   Updated: 2021/06/21 09:14:22 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static void	decode(int sig)
 	{
 		if (j == realloc_counter)
 		{
-			str = ft_realloc(&str, realloc_counter);
+			str = ft_realloc(str, realloc_counter);
 			realloc_counter *= realloc_counter;
 		}
 		str[j++] = convert_bin_to_char(signal_collector);

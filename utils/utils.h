@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 15:37:53 by ametta            #+#    #+#             */
-/*   Updated: 2021/06/20 18:13:12 by ametta           ###   ########.fr       */
+/*   Updated: 2021/06/21 09:13:22 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ int				ft_isdigit(const int c);
 void			ft_putendl(const char *s);
 char			*ft_itoa(int n);
 void			put_str_in_color(char *color, char *str);
-char			*ft_realloc(char **str, int to_add);
+char			*ft_realloc(char *str, int to_add);
 
 #endif

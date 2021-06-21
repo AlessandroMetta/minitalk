@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 15:15:14 by ametta            #+#    #+#             */
-/*   Updated: 2021/06/20 17:33:59 by ametta           ###   ########.fr       */
+/*   Updated: 2021/06/21 09:34:24 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,20 +69,20 @@ static void	decode(int sig)
 	static int				i = 0;
 	static int				j = 0;
 	static unsigned char	*str = NULL;
-	static int				realloc_counter = 1;
+	static int				realloc_counter = 16;
 
 	if (!str)
-		str = (unsigned char *)malloc(sizeof(unsigned char) * TEXT_SIZE);
+		str = (unsigned char *)malloc(sizeof(unsigned char) * realloc_counter);
 	if (sig == SIGUSR1)
 		bin[i++] = 1;
 	else if (sig == SIGUSR2)
 		bin[i++] = 0;
 	if (i > 7)
 	{
-		if (j == (TEXT_SIZE * realloc_counter))
+		if (j == realloc_counter)
 		{
-			str = ft_realloc(str, TEXT_SIZE);
-			realloc_counter++;
+			str = (unsigned char *)ft_realloc((char *)str, realloc_counter);
+			realloc_counter *= realloc_counter;
 		}
 		str[j++] = convert_bin_to_dec(bin);
 		additional(&j, &str);
