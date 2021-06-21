@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 15:15:09 by ametta            #+#    #+#             */
-/*   Updated: 2021/06/21 09:29:37 by ametta           ###   ########.fr       */
+/*   Updated: 2021/06/21 11:26:42 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,7 @@
 
 # include <signal.h>
 # include "../utils/utils.h"
+
+# define STR_MAX_LEN 16
 
 #endif

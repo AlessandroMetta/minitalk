@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 15:14:56 by ametta            #+#    #+#             */
-/*   Updated: 2021/06/20 18:51:02 by ametta           ###   ########.fr       */
+/*   Updated: 2021/06/21 12:13:15 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static void	char_to_bin(char chr, int server_pid)
 	int	i;
 
 	i = 0;
+	if (chr < 0)
+		return ;
 	while (i < 8)
 	{
 		if (chr % 2 == 1)

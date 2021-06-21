@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 15:15:03 by ametta            #+#    #+#             */
-/*   Updated: 2021/06/21 09:14:12 by ametta           ###   ########.fr       */
+/*   Updated: 2021/06/21 11:45:43 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,7 @@ char	*ft_realloc(char *str, int to_add)
 			while (str[++len])
 				new[len] = str[len];
 		}
-		while (len < to_add)
-			new[len] = 0;
+		new[len] = 0;
 	}
 	free(str);
 	str = NULL;
@@ -97,4 +96,20 @@ int	ft_atoi(const char *str)
 		exit(1);
 	}
 	return (num * sign);
+}
+
+void	put_menu_server(pid_t	pid)
+{
+	char	*str_pid;
+
+	str_pid = ft_itoa(pid);
+	put_str_in_color(TEXT_COLOR_GREEN, "\t\t\tWelcome in Minitalk\n");
+	put_str_in_color(TEXT_COLOR_GREEN, "To start the chat,");
+	put_str_in_color(TEXT_COLOR_GREEN, "share this code to the client: ");
+	put_str_in_color(TEXT_COLOR_GREEN, str_pid);
+	put_str_in_color(TEXT_COLOR_GREEN, "\nThe chat will begin from here. ");
+	put_str_in_color(TEXT_COLOR_GREEN, "Have fun!\n");
+	put_str_in_color(TEXT_COLOR_GREEN, "=================================");
+	put_str_in_color(TEXT_COLOR_GREEN, "=================================\n");
+	free(str_pid);
 }

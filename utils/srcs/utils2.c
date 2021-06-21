@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 15:15:00 by ametta            #+#    #+#             */
-/*   Updated: 2021/06/19 15:40:53 by ametta           ###   ########.fr       */
+/*   Updated: 2021/06/21 11:52:19 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ int	ft_isdigit(const int c)
 		return (0);
 }
 
+void	ft_putchar(const char c)
+{
+	write(1, &c, 1);
+}
+
 void	ft_putstr(const char *s)
 {
 	int	i;
@@ -44,9 +49,4 @@ void	ft_putendl(const char *s)
 		ft_putstr(s);
 		ft_putchar('\n');
 	}
-}
-
-void	ft_putchar(const char c)
-{
-	write(1, &c, 1);
 }

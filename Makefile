@@ -1,5 +1,6 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS    := -Wall -Werror -Wextra
+# ASAN_FLAGS = -fsanitize=address
 
 SRCS_DIR = mandatory
 SRCS_DIR_BONUS = bonus
@@ -42,19 +43,19 @@ OBJS_CLIENT_FILES_BONUS = $(addprefix $(OBJS_DIR)/, $(OBJS_CLIENT_BONUS))
 OBJS_BONUS = $(OBJS_SERVER_FILES_BONUS) $(OBJS_CLIENT_FILES_BONUS)
 
 all:	$(OBJS) $(OBJS_UTILS_FILES)
-		@$(CC) $(CFLAGS) $(OBJS_SERVER_FILES) $(OBJS_UTILS_FILES) -o server
+		@$(CC) $(CFLAGS) $(ASAN_FLAGS) $(OBJS_SERVER_FILES) $(OBJS_UTILS_FILES) -o server
 		@echo $(FONT_COLOR_GREEN)[server executable create]$(FONT_COLOR_DEFAULT)
-		@$(CC) $(FONT_COLOR_CFLAGS) $(OBJS_CLIENT_FILES) $(OBJS_UTILS_FILES) -o client
+		@$(CC) $(CFLAGS) $(ASAN_FLAGS) $(OBJS_CLIENT_FILES) $(OBJS_UTILS_FILES) -o client
 		@echo $(FONT_COLOR_GREEN)[client executable create]$(FONT_COLOR_DEFAULT)
 
 $(OBJS):	$(SRCS_PATH) $(UTILS_PATH)
-			@$(CC) $(CFLAGS) $(SRCS_PATH) $(UTILS_PATH) -c
+			@$(CC) $(CFLAGS) $(ASAN_FLAGS) $(SRCS_PATH) $(UTILS_PATH) -c
 			@echo $(FONT_COLOR_GREEN)[objects file compile]$(FONT_COLOR_DEFAULT)
 
 bonus:	$(OBJS_BONUS) $(OBJS_UTILS_FILES)
 		@$(CC) $(CFLAGS) $(OBJS_SERVER_FILES_BONUS) $(OBJS_UTILS_FILES) -o server_bonus
 		@echo $(FONT_COLOR_GREEN)[server executable create]$(FONT_COLOR_DEFAULT)
-		@$(CC) $(FONT_COLOR_CFLAGS) $(OBJS_CLIENT_FILES_BONUS) $(OBJS_UTILS_FILES) -o client_bonus
+		@$(CC) $(CFLAGS) $(OBJS_CLIENT_FILES_BONUS) $(OBJS_UTILS_FILES) -o client_bonus
 		@echo $(FONT_COLOR_GREEN)[client executable create]$(FONT_COLOR_DEFAULT)
 
 $(OBJS_BONUS):	$(SRCS_PATH_BONUS) $(UTILS_PATH)
