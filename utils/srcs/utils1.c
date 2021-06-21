@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 15:15:03 by ametta            #+#    #+#             */
-/*   Updated: 2021/06/21 15:55:08 by ametta           ###   ########.fr       */
+/*   Updated: 2021/06/21 16:15:34 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	put_menu_server(pid_t	pid)
 	put_str_in_color(TEXT_COLOR_GREEN, "To start the chat,");
 	put_str_in_color(TEXT_COLOR_GREEN, "share this code to the client: ");
 	put_str_in_color(TEXT_COLOR_GREEN, str_pid);
-	put_str_in_color(TEXT_COLOR_GREEN, "\nThe chat will begin from here. ");
+	put_str_in_color(TEXT_COLOR_GREEN, "\nThe chat will start from here. ");
 	put_str_in_color(TEXT_COLOR_GREEN, "Have fun!\n");
 	put_str_in_color(TEXT_COLOR_GREEN, "=================================");
 	put_str_in_color(TEXT_COLOR_GREEN, "=================================\n");
