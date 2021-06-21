@@ -1,3 +1,3 @@
 # minitalk
 
-Not evalueted jet!
+125% (15 days)
